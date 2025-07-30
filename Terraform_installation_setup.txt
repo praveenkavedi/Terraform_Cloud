@@ -1,0 +1,4 @@
+Run the commands in the website to install terraform
+
+Launch linux amzon ec2 install and run the commands 
+https://developer.hashicorp.com/terraform/install

@@ -1,0 +1,25 @@
+1) how to create resource in two differnt account or differnt region
+    - user mutiple provider with alias
+    #mutiple provider is acchieved by using alias in the provider block and use provider argument in the resource block.
+    #if mutiple account, then eother pass the creds in the respective provider block or update the credentials file like 
+    #[account_1]
+        # aws_access_key_id = "AKIA..."
+        # aws_secret_access_key = "secret"
+    #[account_2]
+        # aws_access_key_id = "AKIA..."
+        # aws_secret_access_key = "secret"
+2) Difference between count and for_each?
+3) In for_each we can iterate map, i.e key-value pair,  but how will you iterate list? use th funtion "toset"
+    resource "aws_iam_user" "my-users" {
+    for_each = toset(["user1", "user2", "user3"])
+    name = each.value
+    path = "/system/"
+
+    tags = {
+    tag-key = each.value
+        }
+    }
+4) Terraform which resources are mutable(changable) and which resources are immutable(not-changable)?
+    #Immutable -> meaning -> Cannot be modified -> VPC CIDR block change(It will delete and recreate)
+    #mutable -> meaning -> Can be modified
+    #Terraform VPC is immutable -> tags, security group changes are mutable.
